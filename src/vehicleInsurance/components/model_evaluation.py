@@ -9,7 +9,7 @@ from vehicleInsurance.entity.artifact_entity import (
 from vehicleInsurance.entity.config_entity import ModelEvaluationConfig
 from vehicleInsurance.exception import VehicleInsuranceException
 from vehicleInsurance.logger import logger
-from vehicleInsurance.ml.model.estimator import VehicleInsuranceModel, S3Estimator, TargetValueMapping
+from vehicleInsurance.ml.model.estimator import S3Estimator
 from vehicleInsurance.utils.main_utils import load_object, read_yaml_file, get_classification_score
 
 
