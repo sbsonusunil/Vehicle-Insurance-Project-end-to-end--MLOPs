@@ -1,0 +1,17 @@
+pandas
+numpy
+scikit-learn
+xgboost
+imbalanced-learn
+pymongo
+dnspython
+python-dotenv
+PyYAML
+dill
+Flask
+Jinja2
+boto3
+mypy-boto3-s3
+certifi
+scipy
+-e .
