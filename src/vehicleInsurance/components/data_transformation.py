@@ -109,7 +109,9 @@ class DataTransformation:
             input_feature_train_final, target_feature_train_final = smt.fit_resample(
                 transformed_input_train_feature, target_feature_train_df
             )
-            input_feature_test_final, target_feature_test_final = smt.fit_resample(
+            # Apply the same resampling logic independently on test data (no leakage)
+            smt_test = SMOTEENN(sampling_strategy="minority")
+            input_feature_test_final, target_feature_test_final = smt_test.fit_resample(
                 transformed_input_test_feature, target_feature_test_df
             )
 

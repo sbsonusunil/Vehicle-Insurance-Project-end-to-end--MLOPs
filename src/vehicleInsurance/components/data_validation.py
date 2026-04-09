@@ -95,19 +95,15 @@ class DataValidation:
             train_dataframe = DataValidation.read_data(train_file_path)
             test_dataframe = DataValidation.read_data(test_file_path)
 
-            status = self.validate_number_of_columns(dataframe=train_dataframe)
-            if not status:
-                error_message = "Train dataframe does not contain all columns.\n"
-            status = self.validate_number_of_columns(dataframe=test_dataframe)
-            if not status:
-                error_message = "Test dataframe does not contain all columns.\n"
+            if not self.validate_number_of_columns(dataframe=train_dataframe):
+                raise Exception("Train dataframe does not contain all required columns.")
+            if not self.validate_number_of_columns(dataframe=test_dataframe):
+                raise Exception("Test dataframe does not contain all required columns.")
 
-            status = self.is_numerical_column_exist(dataframe=train_dataframe)
-            if not status:
-                error_message = "Train dataframe does not contain all numerical columns.\n"
-            status = self.is_numerical_column_exist(dataframe=test_dataframe)
-            if not status:
-                error_message = "Test dataframe does not contain all numerical columns.\n"
+            if not self.is_numerical_column_exist(dataframe=train_dataframe):
+                raise Exception("Train dataframe does not contain all numerical columns.")
+            if not self.is_numerical_column_exist(dataframe=test_dataframe):
+                raise Exception("Test dataframe does not contain all numerical columns.")
 
             status = self.detect_dataset_drift(
                 base_df=train_dataframe, current_df=test_dataframe

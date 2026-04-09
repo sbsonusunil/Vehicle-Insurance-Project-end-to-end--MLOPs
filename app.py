@@ -31,10 +31,10 @@ def train():
         return jsonify({"status": "success", "message": "Training pipeline completed successfully"})
     except VehicleInsuranceException as e:
         logger.error(f"Training pipeline failed: {e}")
-        return jsonify({"status": "failure", "message": str(e)}), 500
+        return jsonify({"status": "failure", "message": "Training pipeline failed. Check server logs."}), 500
     except Exception as e:
         logger.error(f"Unexpected error: {e}")
-        return jsonify({"status": "failure", "message": str(e)}), 500
+        return jsonify({"status": "failure", "message": "An unexpected error occurred. Check server logs."}), 500
 
 
 @app.route("/predict", methods=["POST"])
@@ -80,4 +80,5 @@ def predict():
 
 
 if __name__ == "__main__":
-    app.run(host=APP_HOST, port=APP_PORT, debug=True)
+    debug_mode = os.environ.get("FLASK_DEBUG", "false").lower() == "true"
+    app.run(host=APP_HOST, port=APP_PORT, debug=debug_mode)

@@ -60,7 +60,9 @@ class SimpleStorageService:
     ) -> None:
         try:
             logger.info(f"Downloading s3://{bucket_name}/{key} to {output_file_path}")
-            os.makedirs(os.path.dirname(output_file_path), exist_ok=True)
+            dir_path = os.path.dirname(output_file_path)
+            if dir_path:
+                os.makedirs(dir_path, exist_ok=True)
             self.s3_resource.meta.client.download_file(bucket_name, key, output_file_path)
             logger.info("Download complete")
         except Exception as e:
