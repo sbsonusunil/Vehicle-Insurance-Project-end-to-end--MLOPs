@@ -68,19 +68,5 @@ def load_object(file_path: str) -> object:
 
 
 def get_classification_score(y_true, y_pred):
-    try:
-        from vehicleInsurance.entity.artifact_entity import ClassificationMetricArtifact
-        from sklearn.metrics import f1_score, precision_score, recall_score
-
-        model_f1_score = f1_score(y_true, y_pred)
-        model_recall_score = recall_score(y_true, y_pred)
-        model_precision_score = precision_score(y_true, y_pred)
-
-        classification_metric = ClassificationMetricArtifact(
-            f1_score=model_f1_score,
-            precision_score=model_precision_score,
-            recall_score=model_recall_score,
-        )
-        return classification_metric
-    except Exception as e:
-        raise VehicleInsuranceException(e, sys)
+    from vehicleInsurance.ml.metric.classification_metric import get_classification_score as _get_score
+    return _get_score(y_true, y_pred)
