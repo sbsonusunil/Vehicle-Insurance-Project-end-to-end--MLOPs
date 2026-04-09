@@ -73,10 +73,10 @@ def predict():
         return render_template("index.html", result=result)
     except VehicleInsuranceException as e:
         logger.error(f"Prediction failed: {e}")
-        return render_template("index.html", result=f"Error: {str(e)}")
+        return render_template("index.html", result="Prediction failed. Please try again.")
     except Exception as e:
         logger.error(f"Unexpected error in prediction: {e}")
-        return render_template("index.html", result=f"Error: {str(e)}")
+        return render_template("index.html", result="An unexpected error occurred. Please try again.")
 
 
 if __name__ == "__main__":

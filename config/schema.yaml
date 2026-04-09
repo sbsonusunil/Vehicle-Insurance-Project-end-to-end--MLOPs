@@ -10,6 +10,7 @@ columns:
   - Annual_Premium
   - Policy_Sales_Channel
   - Vintage
+  - Response
 
 numerical_columns:
   - Age
